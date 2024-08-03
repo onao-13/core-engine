@@ -10,6 +10,6 @@ func main() {
 	args := os.Args[1:]
 	//fmt.Println(args)
 
-	baseCommand := command.AutoSelect(args)
+	baseCommand := command.Select(args)
 	fmt.Println(baseCommand)
 }
