@@ -8,6 +8,7 @@ import (
 
 var Commands = map[string]*Command{
 	common.CommandProject: CommandProject,
+	common.CommandParser:  CommandNovelScriptParser,
 }
 
 var (
@@ -18,6 +19,16 @@ var (
 			common.SubcommandProjectCreate: {
 				Name: common.SubcommandProjectCreate,
 				Run:  action.ProjectCreate,
+			},
+		},
+	}
+	CommandNovelScriptParser = &Command{
+		Name: common.CommandParser,
+		Help: "Parse Novel-Script files",
+		Subcommands: map[string]*Command{
+			common.SubcommandParserParse: {
+				Name: common.SubcommandParserParse,
+				Run:  action.ParserParseFile,
 			},
 		},
 	}

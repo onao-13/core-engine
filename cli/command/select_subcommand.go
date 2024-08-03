@@ -5,27 +5,23 @@ import (
 	"github.com/samber/lo"
 )
 
-func Select(args []string) int {
-	if len(args) == 0 {
-		return 1
-	}
-
+func Select(args []string) (int, *Command) {
 	baseCommand := selectCommand(args[0])
 	if baseCommand == nil {
-		return 1
+		return 0, nil
 	}
 
 	if baseCommand.Subcommands == nil {
 		if baseCommand.Run == nil {
-			return 1
+			return 0, nil
 		}
-		return baseCommand.Run(args[1:])
+		return 1, baseCommand
 	}
 
 	curCommand, argLevel := findSubcommandIntoArgs(baseCommand, args)
 
 	if curCommand == nil || curCommand.Run == nil {
-		return 1
+		return 1, nil
 	}
 
 	// clear subcommand
@@ -33,7 +29,7 @@ func Select(args []string) int {
 
 	fmt.Println(curCommand.Name)
 
-	return curCommand.Run(args)
+	return argLevel, curCommand
 }
 
 func findSubcommandIntoArgs(com *Command, args []string) (*Command, int) {

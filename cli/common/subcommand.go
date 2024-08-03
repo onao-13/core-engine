@@ -20,7 +20,7 @@ const (
 // Region subcommand engine
 
 const (
-	SubcommandEngineParse = "parse"
+	SubcommandParserParse = "parse"
 )
 
 // End subcommand engine

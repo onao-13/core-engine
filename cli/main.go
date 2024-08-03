@@ -1,15 +1,15 @@
 package main
 
 import (
-	"core-engine/cli/command"
-	"fmt"
 	"os"
 )
 
 func main() {
 	args := os.Args[1:]
-	//fmt.Println(args)
+	if len(args) <= 0 {
+		os.Exit(1)
+	}
 
-	baseCommand := command.Select(args)
-	fmt.Println(baseCommand)
+	cli := NewCLI(true)
+	cli.Run(args)
 }
