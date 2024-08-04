@@ -20,6 +20,7 @@ type EnvironmentInfo struct {
 type Action struct {
 	ChangeEns *ActionChangeEns `json:"changeEns,omitempty"`
 	Select    *ActionSelect    `json:"select,omitempty"`
+	Condition *ActionCondition `json:"condition,omitempty"`
 }
 
 type ActionChangeEns struct {
@@ -33,10 +34,20 @@ type ActionSelect struct {
 	Values   []string `json:"values"`
 }
 
+type ActionCondition struct {
+	Variable string `json:"variable"`
+	Value    string `json:"value"`
+}
+
+type ActionGoto struct {
+	File string `json:"file"`
+}
+
 // End node actions
 
 type Node struct {
 	PersonInfo      *PersonReplicaInfo `json:"personInfo,omitempty"`
 	EnvironmentInfo *EnvironmentInfo   `json:"environmentInfo,omitempty"`
 	Action          *Action            `json:"action,omitempty"`
+	Goto            *ActionGoto        `json:"goto,omitempty"`
 }

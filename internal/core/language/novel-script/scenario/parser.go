@@ -78,6 +78,21 @@ func ParseNovelScriptFile(ns *model.NovelScript) *Scenario {
 					},
 				},
 			})
+		case action.Goto != nil:
+			scen.Nodes = append(scen.Nodes, Node{
+				Goto: &ActionGoto{
+					File: action.Goto.File,
+				},
+			})
+			//case action.Condition != nil:
+			//	scen.Nodes = append(scen.Nodes, Node{
+			//		Action: &Action{
+			//			Condition: &ActionCondition{
+			//				Variable: action.Condition.Variable,
+			//				Name:    action.Condition.Name,
+			//			},
+			//		},
+			//	})
 		}
 	}
 
