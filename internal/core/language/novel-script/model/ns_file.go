@@ -5,6 +5,8 @@ type Action struct {
 	Replica           *Replica
 	ChangeEnsValue    *ChangeEnsValue
 	Select            *Select
+	Condition         *Condition
+	Goto              *Goto
 }
 
 type ChangeEnvironment struct {
@@ -31,6 +33,15 @@ type ChangeEnsValue struct {
 type Select struct {
 	Variable string
 	Values   []string
+}
+
+type Condition struct {
+	Conditions map[string]string
+	Then       []Action
+}
+
+type Goto struct {
+	File string
 }
 
 type NovelScript struct {
