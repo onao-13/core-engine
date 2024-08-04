@@ -12,6 +12,7 @@ const (
 	LangKeywordUse        = "use"
 	LangKeywordSet        = "set"
 	LangKeywordCondition  = "="
+	LangKeywordXCompare   = "=="
 	LangKeywordDot        = "."
 	LangKeywordQuote      = "\""
 	LangKeywordSelect     = "select"
@@ -21,6 +22,7 @@ const (
 	LangKeywordElse       = "else"
 	LangKeywordAnd        = "and"
 	LangKeywordOrSymbol   = "|"
+	LangKeywordGoto       = "goto"
 )
 
 // End lang keywords
