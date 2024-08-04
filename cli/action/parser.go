@@ -2,6 +2,8 @@ package action
 
 import (
 	"core-engine/cli/common"
+	"core-engine/internal/core/language/novel-script/parser"
+	"core-engine/internal/core/language/novel-script/scenario"
 	"flag"
 	"github.com/rs/zerolog/log"
 )
@@ -16,6 +18,25 @@ func ParserParseFile(args []string) int {
 
 	if err := flags.Parse(args); err != nil {
 		log.Error().Err(err).Msg("Error parsing flags")
+		return 1
+	}
+
+	p := parser.Parser{}
+	if err := p.Load(file); err != nil {
+		return 1
+	}
+
+	ns, err := p.Parse()
+	if err != nil {
+		log.Error().Err(err).Msg("Error parsing file")
+		return 1
+	}
+
+	scen := scenario.NewScenario(ns)
+
+	err = scen.Save("C:\\Users\\onao1\\Projects\\novel\\")
+	if err != nil {
+		log.Error().Err(err).Msg("Error creating scenario")
 		return 1
 	}
 

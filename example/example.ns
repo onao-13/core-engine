@@ -1,0 +1,26 @@
+Act 1
+Chapter 1
+
+# persons
+person test_1 "assets/view1.png"
+person test_2 "assets/view2.png"
+
+use ens base "example.ens"
+
+background "main.png"
+
+test_1 "test replica"
+
+test_2 "test replica response"
+
+background "other.png"
+
+music "test.mp3"
+
+set ens base.FLAG_1 = false
+
+select baseSelect = "test 1" | "test 2" | "test 3"
+
+if baseSelect = "test 1" then set ens base.FLAG_1 = true and music "test2.mp3"
+elif baseSelect "test 2" then if base.FLAG_1 == false then set ens base.FLAG_1 = true else set ens base.FLAG_1 = false
+else set ens base.FLAG_1 = true
