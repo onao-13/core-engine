@@ -12,8 +12,9 @@ const (
 // Region parse file
 
 const (
-	FlagParseFile  = "file"
-	FlagParseFiles = "files"
+	FlagParseFile   = "file"
+	FlagProjectPath = "project-path"
+	FlagParseFiles  = "files"
 )
 
 // Region parse files
