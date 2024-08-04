@@ -17,6 +17,7 @@ func ParseNovelScriptFile(ns *model.NovelScript) *Scenario {
 			Chapter:   ns.Chapter,
 		},
 		Nodes: make([]Node, 0),
+		Vars:  make(map[string]string),
 	}
 
 	ids := make([]int, 0)
@@ -64,6 +65,16 @@ func ParseNovelScriptFile(ns *model.NovelScript) *Scenario {
 						NewValue: action.ChangeEnsValue.Value,
 						Key:      action.ChangeEnsValue.Key,
 						File:     ensFile,
+					},
+				},
+			})
+		case action.Select != nil:
+			scen.Vars[action.Select.Variable] = ""
+			scen.Nodes = append(scen.Nodes, Node{
+				Action: &Action{
+					Select: &ActionSelect{
+						Variable: action.Select.Variable,
+						Values:   action.Select.Values,
 					},
 				},
 			})

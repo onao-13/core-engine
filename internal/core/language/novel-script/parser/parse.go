@@ -59,6 +59,10 @@ func (p *Parser) Parse() (*model.NovelScript, error) {
 			if err := p.parseSet(nodeId, words); err != nil {
 				return nil, err
 			}
+		case novelScript.LangKeywordSelect:
+			if err := p.parseSelect(nodeId, words); err != nil {
+				return nil, err
+			}
 		case novelScript.LangKeywordIf:
 
 		}
@@ -281,3 +285,49 @@ func (p *Parser) parseSetEns(nodeId int64, words []string) error {
 
 	return nil
 }
+
+func (p *Parser) parseSelect(nodeId int64, words []string) error {
+	var selectVariable string
+	selectVariable = words[0]
+	if len(selectVariable) == 0 {
+		return failure.ErrSelectSyntaxError
+	}
+
+	if words[1] != novelScript.LangKeywordCondition {
+		return failure.ErrSelectSyntaxError
+	}
+
+	var (
+		selectValues = make([]string, 0)
+		selectValue  string
+	)
+
+	for _, word := range words[2:] {
+		switch {
+		case word == novelScript.LangKeywordOrSymbol:
+			selectValue = strings.Replace(selectValue, " ", "", 1)
+			selectValues = append(selectValues, strings.ReplaceAll(selectValue, "\"", ""))
+			selectValue = ""
+			continue
+		case strings.Contains(word, novelScript.LangKeywordQuote):
+			selectValue += " " + word
+			continue
+		}
+	}
+	selectValue = strings.Replace(selectValue, " ", "", 1)
+	selectValues = append(selectValues, strings.ReplaceAll(selectValue, "\"", ""))
+	selectValue = " "
+
+	p.out.Actions[nodeId] = model.Action{
+		Select: &model.Select{
+			Variable: selectVariable,
+			Values:   selectValues,
+		},
+	}
+
+	return nil
+}
+
+//func (p *Parser) parseCondition(nodeId int64, words []string) error {
+//
+//}

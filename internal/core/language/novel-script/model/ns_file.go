@@ -4,6 +4,7 @@ type Action struct {
 	ChangeEnvironment *ChangeEnvironment
 	Replica           *Replica
 	ChangeEnsValue    *ChangeEnsValue
+	Select            *Select
 }
 
 type ChangeEnvironment struct {
@@ -25,6 +26,11 @@ type ChangeEnsValue struct {
 	Name  string
 	Key   string
 	Value string
+}
+
+type Select struct {
+	Variable string
+	Values   []string
 }
 
 type NovelScript struct {

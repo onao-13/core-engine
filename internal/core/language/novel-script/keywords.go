@@ -13,11 +13,14 @@ const (
 	LangKeywordSet        = "set"
 	LangKeywordCondition  = "="
 	LangKeywordDot        = "."
+	LangKeywordQuote      = "\""
+	LangKeywordSelect     = "select"
 	LangKeywordIf         = "if"
 	LangKeywordThen       = "then"
 	LangKeywordElif       = "elif"
 	LangKeywordElse       = "else"
 	LangKeywordAnd        = "and"
+	LangKeywordOrSymbol   = "|"
 )
 
 // End lang keywords

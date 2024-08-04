@@ -29,4 +29,6 @@ var (
 	ErrEnsNotLoaded      = errors.New("ens not loaded")
 	ErrParseUseEnsSyntax = errors.New("parse use ens syntax error. format <ens-name>.<key> = <value>")
 	ErrSetTypeNotFound   = errors.New("set type not found")
+
+	ErrSelectSyntaxError = errors.New("select syntax error. format: select <var-name> = \"select1\" | \"select2\"")
 )

@@ -9,8 +9,8 @@ type PersonReplicaInfo struct {
 }
 
 type EnvironmentInfo struct {
-	Background string `json:"background"`
-	Music      string `json:"music"`
+	Background string `json:"background,omitempty"`
+	Music      string `json:"music,omitempty"`
 }
 
 // End node infos
@@ -18,13 +18,19 @@ type EnvironmentInfo struct {
 // Region node actions
 
 type Action struct {
-	ChangeEns *ActionChangeEns
+	ChangeEns *ActionChangeEns `json:"changeEns,omitempty"`
+	Select    *ActionSelect    `json:"select,omitempty"`
 }
 
 type ActionChangeEns struct {
 	NewValue string `json:"newValue"`
 	Key      string `json:"type"`
 	File     string `json:"ensFile"`
+}
+
+type ActionSelect struct {
+	Variable string   `json:"variable"`
+	Values   []string `json:"values"`
 }
 
 // End node actions

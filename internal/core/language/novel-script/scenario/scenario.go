@@ -19,9 +19,12 @@ type Meta struct {
 	Chapter   string    `json:"chapter"`
 }
 
+type Variables map[string]string
+
 type Scenario struct {
-	Meta  Meta   `json:"meta"`
-	Nodes []Node `json:"nodes"`
+	Meta  Meta      `json:"meta"`
+	Vars  Variables `json:"vars"`
+	Nodes []Node    `json:"nodes"`
 }
 
 func NewScenario(ns *model.NovelScript) *Scenario {

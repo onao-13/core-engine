@@ -34,7 +34,7 @@ func ParserParseFile(args []string) int {
 
 	scen := scenario.NewScenario(ns)
 
-	err = scen.Save("C:\\Users\\onao1\\Projects\\novel\\")
+	err = scen.Save("/Users/onao_13/projects/novel-engine/test")
 	if err != nil {
 		log.Error().Err(err).Msg("Error creating scenario")
 		return 1
