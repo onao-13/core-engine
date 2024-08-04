@@ -10,11 +10,13 @@ import (
 
 func ParserParseFile(args []string) int {
 	var (
-		file string
+		file        string
+		projectPath string
 	)
 
 	flags := flag.NewFlagSet("ParserParseFile", flag.ExitOnError)
 	flags.StringVar(&file, common.FlagParseFile, "", "parse file name")
+	flags.StringVar(&projectPath, common.FlagProjectPath, "", "project path")
 
 	if err := flags.Parse(args); err != nil {
 		log.Error().Err(err).Msg("Error parsing flags")
@@ -34,7 +36,7 @@ func ParserParseFile(args []string) int {
 
 	scen := scenario.NewScenario(ns)
 
-	err = scen.Save("/Users/onao_13/projects/novel-engine/test")
+	err = scen.Save(projectPath)
 	if err != nil {
 		log.Error().Err(err).Msg("Error creating scenario")
 		return 1
